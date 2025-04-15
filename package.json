@@ -1,0 +1,30 @@
+{
+  "name": "sequelize-orm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azimhatami/sequelize-orm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/azimhatami/sequelize-orm/issues"
+  },
+  "homepage": "https://github.com/azimhatami/sequelize-orm#readme",
+  "dependencies": {
+    "@sequelize/core": "^7.0.0-alpha.46",
+    "@sequelize/mysql": "^7.0.0-alpha.46",
+    "mysql2": "^3.14.0",
+    "nodemon": "^3.1.9"
+  }
+}
