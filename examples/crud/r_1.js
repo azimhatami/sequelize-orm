@@ -195,17 +195,41 @@ async function main() {
 //  console.log(count);
 //  console.log(rows);
 
-  const count = await User.count();
-  console.log('Count: ', count);
+//  const count = await User.count();
+//  console.log('Count: ', count);
 
-  const minAge = await User.min('age');
-  console.log('minAge: ', minAge);
+//  const minAge = await User.min('age');
+//  console.log('minAge: ', minAge);
 
-  const maxAge = await User.max('age');
-  console.log('maxAge: ', maxAge);
+//  const maxAge = await User.max('age');
+//  console.log('maxAge: ', maxAge);
 
-  const sumAge = await User.sum('age');
-  console.log('sumAge: ', sumAge);
+//  const sumAge = await User.sum('age');
+//  console.log('sumAge: ', sumAge);
+
+//  const users = await User.findAll({
+//    where: {
+//      age: {
+//        [Op.lte]: 28,
+//      },
+//    },
+//    attributes: ['id', 'firstname', 'lastname'],
+//    raw: true,
+//  });
+//  console.log(users);
+
+  const users = await User.findAll({
+    where: {
+      age: {
+        [Op.lte]: 28,
+      },
+    },
+    attributes: {
+      exclude: ['bio', 'birthday']
+    },
+    raw: true,
+  });
+  console.log(users);
 }
 
 main()
