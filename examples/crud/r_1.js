@@ -164,12 +164,22 @@ async function main() {
 //  });
 
   // 1: 3, 2: 3, 3: 3, 4: 1
-  const users = await User.findAll({
-    limit: 3,
-    offset: ((4 - 1) * 3),
-    raw: true
-  });
-  console.log(users);
+//  const users = await User.findAll({
+//    limit: 3,
+//    offset: ((4 - 1) * 3),
+//    raw: true
+//  });
+//  console.log(users);
+
+//  const user = await User.findOne({
+//    where: {
+//      username: 'robwilson',
+//    },
+//    raw: true
+//  });
+
+  const user = await User.findByPk(4, {raw: true});
+  console.log(user);
 }
 
 main()
