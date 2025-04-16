@@ -1,3 +1,5 @@
 const { sequelize } = require('./configs/db.config.js');
 
-require('./examples/models/model_1');
+// require('./examples/models/model_1');
+// require('./examples/models/model_2');
+require('./examples/models/model_3');
