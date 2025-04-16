@@ -178,8 +178,34 @@ async function main() {
 //    raw: true
 //  });
 
-  const user = await User.findByPk(4, {raw: true});
-  console.log(user);
+//  const user = await User.findByPk(4, {raw: true});
+//  console.log(user);
+
+//  const {rows, count} = await User.findAndCountAll({
+//    where: {
+//      age: {
+//        [Op.gte]: 30,
+//      },
+//    },
+//    limit: 3,
+//    offset: 2,
+//    raw: true
+//  });
+
+//  console.log(count);
+//  console.log(rows);
+
+  const count = await User.count();
+  console.log('Count: ', count);
+
+  const minAge = await User.min('age');
+  console.log('minAge: ', minAge);
+
+  const maxAge = await User.max('age');
+  console.log('maxAge: ', maxAge);
+
+  const sumAge = await User.sum('age');
+  console.log('sumAge: ', sumAge);
 }
 
 main()
