@@ -242,19 +242,63 @@ async function main() {
 //    }
 //  );
 
+//   const users = await User.findAll({
+//    where: {
+//      firstname: {
+//       // [Op.ne]: Sequelize.col('username'), // firstname != username
+//       // [Op.eq]: Sequelize.col('username'), // firstname != username
+//       // [Op.eq]: sql.attribute('username')
+//      },
+//    },
+//    // order: [['id', 'desc']],
+//    order: [['id', 'asc']],
+//    order: ['age'],
+//    attributes: ['id', 'firstname', 'lastname', 'username', 'age'],
+//    raw: true,
+//  });
+//  console.log(users);
+
+//   const users = await User.findAll({
+//    where: {
+//      firstname: {
+//        // [Op.regexp]: '^a',
+//        // [Op.notRegexp]: '^j',
+//        // [Op.regexp]: 'a$',
+//        // [Op.regexp]: 'a$',
+//        // [Op.like]: '%sa%',
+//        // [Op.like]: '%i',
+//        // [Op.notLike]: '%i',
+//        // [Op.like]: 'l%',
+//        // [Op.in]: ['ali', 'sarah']
+//        [Op.notIn]: ['ali', 'sarah', 'mmdreza', 'john']
+//      },
+//      age: {
+//        [Op.gte]: 30
+//      }
+//    },
+//    attributes: ['id', 'firstname', 'lastname', 'username', 'age'],
+//    raw: true,
+//     logging: console.log
+//  });
+//  console.log(users);
+
    const users = await User.findAll({
     where: {
-      firstname: {
-       // [Op.ne]: Sequelize.col('username'), // firstname != username
-       // [Op.eq]: Sequelize.col('username'), // firstname != username
-       // [Op.eq]: sql.attribute('username')
-      },
+      [Op.or]: {
+        firstname: {
+         [Op.notIn]: ['ali', 'sarah', 'mmdreza', 'john']
+        },
+        age: {
+          [Op.gte]: 30
+        },
+        id: {
+          [Op.ne]: 8
+        }
+      }
     },
-    // order: [['id', 'desc']],
-    order: [['id', 'asc']],
-    order: ['age'],
     attributes: ['id', 'firstname', 'lastname', 'username', 'age'],
     raw: true,
+     logging: console.log
   });
   console.log(users);
 }
