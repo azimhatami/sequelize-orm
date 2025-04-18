@@ -1,4 +1,4 @@
-const { DataTypes, Op } = require('@sequelize/core');
+const { DataTypes, Op, Sequelize, sql } = require('@sequelize/core');
 const { sequelize } = require('./../../configs/db.config');
 
 const usersList = [
@@ -13,9 +13,9 @@ const usersList = [
   },
   {
     id: 2,
-    firstname: 'Jane',
+    firstname: 'ali',
     lastname: 'Smith',
-    username: 'janesmith',
+    username: 'ali',
     age: 32,
     birthday: '1991-07-22',
     bio: 'Graphic designer and art lover'
@@ -60,7 +60,7 @@ const usersList = [
     id: 7,
     firstname: 'Robert',
     lastname: 'Wilson',
-    username: 'robwilson',
+    username: 'robert',
     age: 40,
     birthday: '1983-05-25',
     bio: 'Entrepreneur and startup mentor'
@@ -76,9 +76,9 @@ const usersList = [
   },
   {
     id: 9,
-    firstname: 'James',
+    firstname: 'mmdreza',
     lastname: 'Anderson',
-    username: 'jamesa',
+    username: 'mmdreza',
     age: 31,
     birthday: '1992-04-03',
     bio: 'Chef and food critic'
@@ -218,15 +218,42 @@ async function main() {
 //  });
 //  console.log(users);
 
-  const users = await User.findAll({
+//  const users = await User.findAll({
+//    where: {
+//      age: {
+//        [Op.lte]: 28,
+//      },
+//    },
+//    attributes: {
+//      exclude: ['bio', 'birthday']
+//    },
+//    raw: true,
+//  });
+
+//   await User.update(
+//    {
+//      firstname: 'mmdreza',
+//      username: 'mmdreza'
+//    },
+//    {
+//      where: {
+//        id: 9
+//      },
+//    }
+//  );
+
+   const users = await User.findAll({
     where: {
-      age: {
-        [Op.lte]: 28,
+      firstname: {
+       // [Op.ne]: Sequelize.col('username'), // firstname != username
+       // [Op.eq]: Sequelize.col('username'), // firstname != username
+       // [Op.eq]: sql.attribute('username')
       },
     },
-    attributes: {
-      exclude: ['bio', 'birthday']
-    },
+    // order: [['id', 'desc']],
+    order: [['id', 'asc']],
+    order: ['age'],
+    attributes: ['id', 'firstname', 'lastname', 'username', 'age'],
     raw: true,
   });
   console.log(users);
